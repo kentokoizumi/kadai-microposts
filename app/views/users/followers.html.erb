@@ -45,6 +45,16 @@ Followers <span class="badge">
 </span>
 <% end %>
 </li>
+
+    <li class="
+<%= 'active' if current_page?(goodings_user_path(@user)) %>
+">
+<%= link_to goodings_user_path(@user) do %>
+Favorites <span class="badge">
+<%= @count_goodings %>
+</span>
+<% end %>
+</li>
     </ul>
     
 <%= render 'users', users: @followers %>

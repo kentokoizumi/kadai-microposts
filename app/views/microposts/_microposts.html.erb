@@ -25,7 +25,42 @@
 </p>
         </div>
       </div>
+      
+      <br>
+      <% if current_user.gooding?(micropost) %>
+
+    
+<%= form_for(current_user.favorites.find_by(good_id: micropost.id), html: { method: :delete }) do |f| %>
+
+      
+<%= hidden_field_tag :good_id, micropost.id %>
+
+      
+<%= f.submit 'Unfavorites', class: 'btn btn-danger btn-block' %>
+
+    
+<% end %>
+
+  
+<% else %>
+
+    
+<%= form_for(current_user.favorites.build) do |f| %>
+
+      
+<%= hidden_field_tag :good_id, micropost.id %>
+
+      
+<%= f.submit 'Favorite', class: 'btn btn-primary btn-block' %>
+
+    
+<% end %>
+
+  
+<% end %>
     </li>
+    
+<%= render 'favorites/good_button', user: @user %>
   
 <% end %>
 
